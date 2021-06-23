@@ -17,7 +17,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    environment: 
+        name: Development
+        
     steps:
     - uses: actions/checkout@v2
     - name: set up JDK 11
@@ -46,3 +48,21 @@ jobs:
           name: app
           path: ${{github.workspace}}/signedrelease  
   
+  App_Center_Deploy:
+      name: app center to apk
+      runs-on: ubuntu-latest
+      environment: 
+        name: Development
+      needs: [build]
+      
+      steps:
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
+        with:
+         appName: ${{secrets.APP_CENTER_APPNAME}}
+         token: ${{secrets.APP_CENTER_TOKEN}}
+         group: ${{secrets.APP_CENTER_GROUP}}
+         file: ${{github.workspace}}/signedrelease/app-debug.apk
+         notifyTesters: true
+         debug: false
+      

@@ -51,6 +51,7 @@ jobs:
       runs-on: ubuntu-latest
       environment: 
         name: Development
+      # only trigger when the changes from the dev branch
       if: github.ref == 'refs/heads/Dev'
       needs: [build]
       
@@ -70,6 +71,7 @@ jobs:
       runs-on: ubuntu-latest
       environment: 
         name: Production
+      if: github.ref == 'refs/heads/master'
       needs: [build]  
       
       steps:      

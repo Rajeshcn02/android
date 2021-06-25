@@ -25,6 +25,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+      
+    - name: details
+      run : ls
  
  # upload apk name and download build artifact apk should be same (32,39)
     - name: Upload APK

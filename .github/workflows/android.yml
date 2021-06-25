@@ -28,6 +28,11 @@ jobs:
       
     - name: details
       run : ls
+      
+    - name: test build
+      run : |
+            cd app/build/outputs/apk/debug
+            ls
  
  # upload apk name and download build artifact apk should be same (32,39)
     - name: Upload APK
